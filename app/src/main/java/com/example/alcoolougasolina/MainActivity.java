@@ -26,8 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         String precoAlcool= editPrecoAlcool.getText().toString();
         String precoGasolina= editPrecoGasolina.getText().toString();
-        precoAlcool="1";
-        precoGasolina="1";
+
         boolean precoAlcoolValidado, precoGasolinaValidado;
         precoAlcoolValidado= validarOtextInputLayout(precoAlcool);
         precoGasolinaValidado= validarOtextInputLayout(precoGasolina);
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     textResultado.setText("Melhor usar Gasolina");
                 break;
                 default:
-                    textResultado.setText("Erro interno.")
+                    textResultado.setText("Erro interno.");
                 break;
             }
         }

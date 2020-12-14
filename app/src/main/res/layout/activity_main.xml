@@ -58,10 +58,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editPrecoAlcool"
-            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Preço Álcool: ex 1.90"
+            android:inputType="numberDecimal"
             android:paddingLeft="0dp"
             android:paddingTop="20dp"
             android:paddingRight="0dp"
@@ -104,6 +104,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:onClick="calcularPreco"
         android:text="Calcular"
         app:backgroundTint="#8C8C8C"
         app:backgroundTintMode="add"
