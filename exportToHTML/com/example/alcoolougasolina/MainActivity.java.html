@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.alcoolougasolina</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">androidx.appcompat.app.AppCompatActivity</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.EditText</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.TextView</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity {</span>
+
+   <span class="s0">private </span><span class="s1">EditText editPrecoAlcool</span><span class="s0">,</span><span class="s1">editPrecoGasolina</span><span class="s0">;</span>
+   <span class="s0">private </span><span class="s1">TextView textResultado</span><span class="s0">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span>
+        <span class="s1">setContentView(R.layout.activity_main)</span><span class="s0">;</span>
+
+         <span class="s1">editPrecoAlcool = findViewById(R.id.editPrecoAlcool)</span><span class="s0">;</span>
+         <span class="s1">editPrecoGasolina = findViewById(R.id.editPrecoGasolina)</span><span class="s0">;</span>
+         <span class="s1">textResultado= findViewById(R.id.textResultado)</span><span class="s0">;</span>
+
+    <span class="s1">}</span>
+
+   <span class="s0">public void </span><span class="s1">calcularPreco(){</span>
+
+        <span class="s1">String precoAlcool= editPrecoAlcool.getText().toString()</span><span class="s0">;</span>
+        <span class="s1">String precoGasolina= editPrecoGasolina.getText().toString()</span><span class="s0">;</span>
+        <span class="s1">precoAlcool=</span><span class="s2">&quot;1&quot;</span><span class="s0">;</span>
+        <span class="s1">precoGasolina=</span><span class="s2">&quot;1&quot;</span><span class="s0">;</span>
+        <span class="s0">boolean </span><span class="s1">precoAlcoolValidado</span><span class="s0">, </span><span class="s1">precoGasolinaValidado</span><span class="s0">;</span>
+        <span class="s1">precoAlcoolValidado= validarOtextInputLayout(precoAlcool)</span><span class="s0">;</span>
+        <span class="s1">precoGasolinaValidado= validarOtextInputLayout(precoGasolina)</span><span class="s0">;</span>
+
+        <span class="s0">if</span><span class="s1">(precoAlcoolValidado==</span><span class="s0">false</span><span class="s1">) {</span>
+            <span class="s1">editPrecoAlcool.setError(</span><span class="s2">&quot;este campo não pode estar vazio&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">else if</span><span class="s1">(precoGasolinaValidado==</span><span class="s0">false</span><span class="s1">){</span>
+            <span class="s1">editPrecoGasolina.setError(</span><span class="s2">&quot;este campo não pode estar vazio&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">else </span><span class="s1">{</span>
+
+            <span class="s0">switch </span><span class="s1">( calculoAlcoolOuGasolina(precoAlcool</span><span class="s0">, </span><span class="s1">precoGasolina) ){</span>
+                <span class="s0">case  </span><span class="s3">1</span><span class="s1">:</span>
+                    <span class="s1">textResultado.setText(</span><span class="s2">&quot;Bah dai melhor usar Álcool CPX&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s0">break;</span>
+                <span class="s0">case </span><span class="s3">2</span><span class="s1">:</span>
+                    <span class="s1">textResultado.setText(</span><span class="s2">&quot;Melhor usar Gasolina&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s0">break;</span>
+                <span class="s0">default</span><span class="s1">:</span>
+                    <span class="s1">textResultado.setText(</span><span class="s2">&quot;Erro interno.&quot;</span><span class="s1">)</span>
+                <span class="s0">break;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s0">public int </span><span class="s1">calculoAlcoolOuGasolina(String alcool</span><span class="s0">, </span><span class="s1">String gasolina){</span>
+        <span class="s0">int </span><span class="s1">valorResultado = stringParaInt(alcool) / stringParaInt(gasolina)</span><span class="s0">;</span>
+        <span class="s0">if </span><span class="s1">(valorResultado &gt;= </span><span class="s3">0.7</span><span class="s1">){</span>
+            <span class="s0">return </span><span class="s3">2</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">else return </span><span class="s3">1</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">public boolean </span><span class="s1">validarOtextInputLayout(String valorNoInput){</span>
+        <span class="s0">if</span><span class="s1">(valorNoInput==</span><span class="s2">&quot;&quot;</span><span class="s1">||valorNoInput==</span><span class="s0">null</span><span class="s1">){</span>
+            <span class="s4">//tratar como um erro do usuário.</span>
+            <span class="s0">return true;</span>
+        <span class="s1">}</span>
+        <span class="s0">else return false;</span>
+    <span class="s1">}</span>
+    <span class="s0">public int </span><span class="s1">stringParaInt(String stringParan){</span>
+        <span class="s4">//CONVERTE INT PARA STRING ONDE DEVE SER USADO NO validarOtextInputLayout(String valorNoInput)</span>
+        <span class="s1">Integer intParan= Integer.parseInt(stringParan)</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">intParan</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span><span class="s4">// álcool/gasolina &gt;= 0.7 : melhor usar gasolina.</span></pre>
+</body>
+</html>
