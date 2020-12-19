@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             break;
         }
 
-        editPrecoGasolina.setText("");
+        editPrecoAlcool.setText("");
         editPrecoGasolina.setText("");
 
     }
