@@ -1,5 +1,6 @@
 package com.example.alcoolougasolina;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     precoAlcool = editPrecoAlcool.getText().toString();
     precoGasolina = editPrecoGasolina.getText().toString();
 
-      // Toast.makeText(this, precoGasolina, Toast.LENGTH_SHORT).show();
+       Toast.makeText(this, precoGasolina, Toast.LENGTH_SHORT).show();
         if(precoAlcool.isEmpty()){
             editPrecoAlcool.setError("campo Vazio");
             return;
@@ -107,4 +108,6 @@ public class MainActivity extends AppCompatActivity {
         int intParan= Integer.parseInt(stringParan);
         return intParan;
     }
+
+
 }                                               // álcool/gasolina >= 0.7 : melhor usar gasolina.
